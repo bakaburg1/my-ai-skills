@@ -78,6 +78,7 @@ Use the **most specific** expectation available:
 * Prefer `expect_identical()` over `expect_equal()` unless tolerance is required.
 * Avoid `expect_snapshot()`; instead generate data **on the fly** or in a temporary folder (`withr::with_tempdir()`).
 * Use `expect_warning()` when expecting only one warning from a function.
+* Use `expect_message()` to capture `cli::cli_alert*()` functions' outputs; `expect_warning()` does not catch it.
 * When expecting **multiple warnings**, or a combination of warnings and an error, from a single function call, chain the `expect_warning()` and `expect_error()` calls. The order of `expect_warning()` calls for the same warning message does not matter, but all expected warnings must be listed even if they are repeated. If an error is also expected, it should typically be the last item in the chain.
 * This chained approach allows `testthat` to react to any unexpected warnings or errors while catching the expected ones.
 * If you need to capture the function's return value while also checking for conditions, enclose the function call and assignment in curly braces `{}` before piping to the expectations.
