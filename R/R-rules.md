@@ -102,6 +102,7 @@ These rules provide a uniform, generic set of practices for authoring and docume
 * Do not call `library(pkg)` inside functions. Declare dependencies in `DESCRIPTION` under `Imports:` or `Suggests:` and namespace calls (e.g., `pkg::fun()`).
 * For repeatedly used packages inside a function, you may specify `@importFrom` in roxygen, but do not duplicate imports when already namespaced (e.g., avoid `@importFrom stringr str_detect` if using `stringr::str_detect()`).
 * Adding dependencies: use `usethis::use_package("pkg", type = "Imports", min_version = TRUE)`. For suggested packages, declare under `Suggests:` and check availability with `rlang::check_installed("pkg")` at runtime.
+* If both `README.Rmd` and `README.md` are present, edit `README.Rmd` and use `devtools::build_readme()` to regenerate `README.md` instead of editing both files manually.
 
 ### 9. Tidy Evaluation and R CMD check
 
