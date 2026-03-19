@@ -12,6 +12,8 @@ developer workflows, and user-facing errors or messages.
   cases.
 - For nontrivial changes, start with a small console repro to test your
   assumptions before editing, then back the change with focused tests.
+- When several functions or targets could plausibly own a change, name
+  the most likely one and confirm the edit target before modifying code.
 - Before changing a package function, inspect its source and roxygen
   docs so the current contract is explicit.
 - When you need to inspect a package function body, use

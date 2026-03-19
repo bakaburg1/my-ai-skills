@@ -21,3 +21,5 @@ facets, labels, and annotations.
   inspect [themes.md](themes.md)
 - For axis, legend, and annotation adjustments:
   inspect [guides-and-labels.md](guides-and-labels.md)
+- For plot object replacement, layer inspection, or ggplot internals:
+  inspect [ggplot-internals.md](ggplot-internals.md)

@@ -20,6 +20,9 @@ shapes.
 - Use `reframe()` for multi-row summaries.
 - Use `case_when(..., .default = ...)` for default branches rather than
   `TRUE ~ ...`.
+- In base subsetting, keep `drop = FALSE` when the result must remain a
+  data frame or matrix, but do not treat it as universally necessary;
+  it is redundant for many multi-column subsets.
 - When list-level attributes matter, preserve them deliberately; if a
   full-list mapping would drop outer attributes, use `x[] <- ...` rather
   than rebinding the whole object.

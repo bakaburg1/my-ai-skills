@@ -12,6 +12,9 @@ inputs are tidyselect or data-masked expressions, also read
 - Scalar and argument validation
   Read [scalar-validation.md](scalar-validation.md)
 
+- Selector contracts
+  Read [selector-contracts.md](selector-contracts.md)
+
 ## Defaults
 
 - Validate early, close to the public interface.

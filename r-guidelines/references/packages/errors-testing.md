@@ -37,3 +37,7 @@ test coverage.
 - For tidy-eval interfaces, test both simple column inputs and injected or
   expression-based inputs.
 - For package workflows, cover integration paths as well as unit behavior.
+- For targeted test runs, prefer `Rscript -e 'devtools::test(filter = "...")'`
+  rather than `testthat::test_file()`.
+- Use `devtools::load_all()` for small console repros, not as the default
+  way to run the test suite.

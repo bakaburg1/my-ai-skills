@@ -37,6 +37,9 @@ my_group_by <- function(.data, vars) {
   variable notes.
 - Avoid `utils::globalVariables()` unless pronouns cannot solve the
   problem, and document the rationale in comments.
+- If a helper accepts filter-style condition strings, split comma-
+  separated clauses before parsing them; `rlang::parse_exprs()` does not
+  interpret commas as implicit conjunctions.
 - Use `sym()`, `syms()`, `data_sym()`, and `data_syms()` only when
   symbol construction is actually needed.
 - Document programmable arguments with roxygen tags for data masking,
