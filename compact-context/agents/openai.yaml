@@ -1,0 +1,4 @@
+interface:
+  display_name: "Compact Context"
+  short_description: "Long-form conversation summaries and handoff memos"
+  default_prompt: "Summarize the entire conversation in a detailed, structured handoff that captures completed work, current focus, files touched, next steps, constraints, decisions, TODOs, tests, and open issues."
