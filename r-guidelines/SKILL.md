@@ -30,6 +30,11 @@ tidyverse conventions where they materially improve clarity or safety.
 - Prefer `fs` for nontrivial path and directory work.
 - Treat `targets` stores as deliberate infrastructure, not incidental
   repo state.
+- When an external assistant would benefit from exact R context,
+  optionally use `btw::btw(..., clipboard = FALSE)` to gather prompt-ready
+  descriptions of functions, help pages, packages, data frames, or
+  environments.
+`btw::btw(dplyr::mutate, mtcars, clipboard = FALSE)`
 
 ## Workflow
 
@@ -38,7 +43,9 @@ tidyverse conventions where they materially improve clarity or safety.
 3. If the task touches multiple areas, read multiple topic files.
 4. If you are unsure whether a topic applies, be slightly loose and read
    one more reference file rather than one fewer.
-5. Apply the guidance directly while implementing or reviewing code.
+5. If you need to hand R context to an LLM, prefer `btw` over ad hoc
+   paraphrases or partial copies.
+6. Apply the guidance directly while implementing or reviewing code.
 
 ## Topic Map
 

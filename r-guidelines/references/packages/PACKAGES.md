@@ -17,6 +17,10 @@ developer workflows, and user-facing errors or messages.
   the most likely one and confirm the edit target before modifying code.
 - Before changing a package function, inspect its source and roxygen
   docs so the current contract is explicit.
+- When an LLM needs richer context about a package function, data frame,
+  or help topic, optionally gather it with `btw::btw(..., clipboard =
+  FALSE)` instead of pasting incomplete snippets from memory.
+`btw::btw(my_function, utils::help("mutate", package = "dplyr"), clipboard = FALSE)`
 - When you need to inspect a package function body, use
   `devtools::load_all()` and then `print(function_name)` so the source
   comes from the loaded package rather than the installed copy.

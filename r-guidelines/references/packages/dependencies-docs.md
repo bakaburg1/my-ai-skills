@@ -47,6 +47,10 @@ Read this file when editing package metadata, roxygen docs, imports, or
 
 - Use `devtools::load_all()` during development.
 `Rscript -e 'devtools::load_all()'`
+- When you need prompt-ready context for an assistant, use
+  `btw::btw(..., clipboard = FALSE)` to describe functions, packages,
+  data frames, or environments without hand-assembling excerpts.
+`btw::btw(dplyr::mutate, mtcars, clipboard = FALSE)`
 - Use `Rscript -e '...'` for quick checks, taking care to avoid shell
   expansion issues.
 `Rscript -e 'source(\"scripts/check.R\")'`
