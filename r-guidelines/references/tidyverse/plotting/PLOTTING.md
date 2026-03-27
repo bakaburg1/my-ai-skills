@@ -10,10 +10,13 @@ facets, labels, and annotations.
   easy to inspect separately.
 - Keep the visual encoding explicit: map data to aesthetics on purpose,
   not by accident.
+`aes(color = group)` only when color carries meaning
 - Prefer scales and themes that communicate intent instead of relying on
   defaults.
+`scale_color_brewer(palette = "Set2")`
 - Use faceting when comparison is the actual task and separate plots
   when the comparisons are genuinely different.
+`facet_wrap(~ subgroup)` for repeated subgroup comparisons
 
 ## Read Next
 

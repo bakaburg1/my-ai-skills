@@ -6,6 +6,7 @@ developer workflows, and user-facing errors or messages.
 ## Default Rules
 
 - Use `cli` for user-facing alerts, warnings, and aborts.
+`cli::cli_abort("{.arg path} must exist.")`
 - Keep dependencies deliberate and minimal.
 - Never edit `NAMESPACE` manually; regenerate it.
 - Test frequently during iteration and add focused coverage for edge
@@ -19,6 +20,10 @@ developer workflows, and user-facing errors or messages.
 - When you need to inspect a package function body, use
   `devtools::load_all()` and then `print(function_name)` so the source
   comes from the loaded package rather than the installed copy.
+```r
+  devtools::load_all()
+  print(my_function)
+  ```
 
 ## Topic Tree
 

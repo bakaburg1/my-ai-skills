@@ -17,11 +17,13 @@ to run experiments safely, or how to work from git worktrees.
   instead of assuming the worktree has its own copy.
 - Before any `targets` command, check the active store explicitly with
   `targets::tar_config_get("store")`.
+`active_store <- targets::tar_config_get("store")`
 - Treat production or shared stores as protected. Do not run mutating
   operations against them casually.
 - For experiments and especially for git worktrees, create an isolated
   experiment store in a local temp or other non-repo path, and point the
   session to it with `targets::tar_config_set(store = exp_store)`.
+`exp_store <- file.path(tempdir(), "targets-exp-store")`
 - If you need fast incremental experiments, seed the experimental store
   from the production store deliberately rather than mutating the
   production store directly.
@@ -35,6 +37,11 @@ to run experiments safely, or how to work from git worktrees.
 - For temporary scripted experiments, use `targets::tar_dir()` around
   `targets::tar_script()` so temporary scripts do not overwrite repo
   files.
+```r
+  targets::tar_dir({
+    targets::tar_script(list(targets::tar_target(x, 1)))
+  })
+  ```
 
 ## Avoid
 

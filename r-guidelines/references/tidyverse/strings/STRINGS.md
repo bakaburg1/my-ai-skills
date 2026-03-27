@@ -6,17 +6,12 @@ replacing, splitting, or formatting text.
 ## Core Rules
 
 - Prefer `stringr` for consistent, pipe-friendly string handling.
+`text |> stringr::str_to_lower() |> stringr::str_trim()`
 - Use `fixed()`, `regex()`, and `coll()` when match semantics matter.
+`str_detect(name, fixed("RStudio"))`
 - Prefer string-first APIs when they make chained transformations easier
   to read.
-
-```r
-text |>
-  str_to_lower() |>
-  str_trim() |>
-  str_replace_all("pattern", "replacement") |>
-  str_extract("\\d+")
-```
+`str_replace_all(text, regex("\\s+"), " ")`
 
 ## Avoid
 

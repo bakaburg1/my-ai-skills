@@ -10,6 +10,13 @@ data encoding.
   plot call.
 - Make typography, spacing, and background choices coherent with the
   plot's purpose.
+```r
+  base_theme <- theme_minimal(base_size = 12) +
+    theme(
+      plot.title = element_text(face = "bold"),
+      panel.grid.minor = element_blank()
+    )
+  ```
 
 ## Avoid
 

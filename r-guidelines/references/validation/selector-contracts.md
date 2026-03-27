@@ -11,20 +11,17 @@ or other selector-backed inputs.
 - If the helper only needs resolved column names, `names(dplyr::select(data,
   ...))` is often enough. Use `tidyselect::eval_select()` when you need
   positions or more control over selection resolution.
+`resolved <- names(dplyr::select(data, tidyselect::all_of(cols)))`
 - For quoted names, validate them with `all_of()`/`any_of()` instead of
   treating them as bare symbols.
+`select(data, all_of(cols))`
 - If a user-facing filter expression is supplied as a string, split
   comma-separated clauses before parsing; `rlang::parse_exprs()` does
   not treat commas as clause separators.
-
-## Patterns
-
 ```r
-resolved <- names(dplyr::select(data, tidyselect::all_of(cols)))
-if (length(resolved) == 0) {
-  cli::cli_abort("{.arg cols} must select at least one column.")
-}
-```
+  clauses <- strsplit(filters, "\\s*,\\s*")[[1]]
+  exprs <- rlang::parse_exprs(clauses)
+  ```
 
 ## Avoid
 

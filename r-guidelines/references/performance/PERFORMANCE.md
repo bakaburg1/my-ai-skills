@@ -6,6 +6,7 @@ real concern. Do not optimize first and justify later.
 ## Default Rules
 
 - Profile before optimizing.
+`profvis::profvis({ slow_pipeline(input) })`
 - Prefer algorithmic improvements over micro-optimizations.
 - Keep the readable version unless measurement justifies extra
   complexity.
@@ -13,6 +14,7 @@ real concern. Do not optimize first and justify later.
 - Use `profvis` to find unknown bottlenecks, `bench::mark()` to compare
   alternatives, `system.time()` for quick checks, and `Rprof()` only
   when base-R profiling is required.
+`bench::mark(dplyr = fast_dplyr(data), base = fast_base(data))`
 
 ## Topic Tree
 

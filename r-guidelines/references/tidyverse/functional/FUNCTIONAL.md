@@ -19,5 +19,6 @@ also read the parallelism subtopic.
 
 - Prefer type-stable purrr functions when they improve clarity over base
   `sapply()` / `lapply()`.
+`paths |> purrr::map_chr(fs::path_ext)`
 - Use loops when they are clearer; use `purrr` when it makes the data
   flow more obvious or the result type more stable.

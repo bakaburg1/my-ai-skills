@@ -5,20 +5,21 @@ Read this file when mapping, walking, reducing, or binding list outputs.
 ## Core Rules
 
 - Prefer `map()` plus `list_rbind()` over superseded `map_dfr()`.
-- Prefer `map()` plus `list_cbind()` over superseded `map_dfc()`.
-- Use `walk()` and `walk2()` for side effects.
-- Prefer `map_*()` variants when the result type should be enforced.
-
 ```r
-models <- data_splits |>
-  map(\(split) train_model(split)) |>
-  list_rbind()
-
-walk2(data_list, plot_names, \(df, name) {
-  p <- ggplot(df, aes(x, y)) + geom_point()
-  ggsave(name, p)
-})
-```
+  models <- data_splits |>
+    map(\(split) train_model(split)) |>
+    list_rbind()
+  ```
+- Prefer `map()` plus `list_cbind()` over superseded `map_dfc()`.
+`parts |> map(readr::read_csv) |> list_cbind()`
+- Use `walk()` and `walk2()` for side effects.
+```r
+  walk2(data_list, plot_names, \(df, name) {
+    ggsave(name, ggplot(df, aes(x, y)) + geom_point())
+  })
+  ```
+- Prefer `map_*()` variants when the result type should be enforced.
+`paths |> map_chr(fs::path_ext)`
 
 ## Avoid
 

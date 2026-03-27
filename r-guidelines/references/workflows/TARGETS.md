@@ -23,5 +23,7 @@ pipeline renders Quarto outputs, also read
   inline helper function definitions inside `_targets.R`.
 - Keep `_targets.R` focused on setup, configuration, and target
   assembly.
+`_targets.R` should mostly hold `tar_option_set()` and `list(tar_target(...))`
 - Treat the active store path as explicit state that must be checked
   before mutating operations.
+`store <- targets::tar_config_get("store")`

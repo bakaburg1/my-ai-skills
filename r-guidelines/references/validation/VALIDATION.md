@@ -22,5 +22,6 @@ inputs are tidyselect or data-masked expressions, also read
   same contract appears repeatedly.
 - Keep validation messages actionable and specific about the offending
   argument or value.
+`cli::cli_abort("{.arg cols} must select at least one column.")`
 - Test surprising edge cases directly in the console before settling on
   a validation pattern.

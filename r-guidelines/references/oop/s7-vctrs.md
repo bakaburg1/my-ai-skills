@@ -16,6 +16,7 @@ one.
   resolution, and predictable size/type behavior.
 - Use `new_vctr()`, `vec_cast()`, and `vec_ptype_common()` when designing
   reusable vector APIs.
+`scores <- vctrs::new_vctr(c(1, 2, 3))`
 
 ## Migration Guidance
 

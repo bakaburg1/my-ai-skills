@@ -12,6 +12,7 @@ multi-format document outputs.
   alone control what `tar_quarto()` tracks.
 - In project mode, remember that Quarto `--output-dir` paths are
   interpreted relative to the project root.
+`"output"` means `project_root/output`, not the current subdirectory
 - Keep heavyweight computation out of authoring documents when pipeline
   outputs can be read instead.
 
