@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Init"
+  short_description: "Bootstrap canonical project operating files"
+  default_prompt: "Use $project-init to scaffold AGENTS.md, PLAN.md, ARCHITECTURE.md, BACKLOG.md, and initialize project memory for this repo."
