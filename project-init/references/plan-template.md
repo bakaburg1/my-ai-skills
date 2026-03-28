@@ -21,19 +21,20 @@ Separate:
 - what the project must do
 - what is explicitly deferred
 
-### 4. Architecture Direction
+### 4. Architecture
 
 Capture major implementation choices that shape the final system:
 
-- canonical artifacts or data model
+- canonical files and data model
 - platform targets
-- major dependency direction
+- major dependency design
 - integration boundaries
 - important constraints
 
 ### 5. Roadmap or Milestones
 
 Describe the milestone-level journey from current state to target state.
+Differences between `PLAN.md` and the current implementation are expected; they should be made operational through the backlog.
 
 ### 6. Open Questions
 

@@ -12,13 +12,13 @@ Use this skill to create the initial project operating backbone before implement
 ## Workflow
 
 1. Establish the backbone information before writing files.
-2. Create the canonical artifacts in a fixed order.
+2. Create the canonical coordination files in a fixed order.
 3. Initialize `.agents/memory/` through `$project-memory`.
 4. Keep deferred choices explicit and avoid guessing.
 
 ## Step 1: Establish Backbone Information
 
-Extract as much as possible from the user request and repo context first. Before writing the artifact set, make sure you understand enough of the project to give the scaffold a real backbone.
+Extract as much as possible from the user request and repo context first. Before writing the canonical coordination files, make sure you understand enough of the project to give the scaffold a real backbone.
 
 Use [bootstrap-discovery-checklist.md](references/bootstrap-discovery-checklist.md) to confirm the minimum inputs.
 
@@ -28,7 +28,7 @@ At minimum, try to establish:
 - project purpose and audience
 - intended deliverable or product shape
 - scope boundaries
-- major technical direction
+- major technical design
 - initial milestone framing
 - known open questions
 - which choices the user wants to defer
@@ -41,7 +41,7 @@ Ask for missing high-impact information when the scaffold would otherwise become
 
 Do not force premature specificity just to fill every heading.
 
-## Step 2: Create the Artifact Set
+## Step 2: Create the Canonical Coordination Files
 
 Create artifacts in this order:
 
@@ -58,7 +58,7 @@ Use the reference files for structure:
 - [architecture-template.md](references/architecture-template.md)
 - [backlog-template.md](references/backlog-template.md)
 
-These are scaffolding references, not rigid forms. Adapt the wording to the actual project, but preserve the artifact roles and their relationships.
+These are scaffolding references, not rigid forms. Adapt the wording to the actual project, but preserve the canonical coordination files' roles and their relationships.
 
 ## Step 3: Write `AGENTS.md` as the Orchestrator
 
@@ -102,12 +102,13 @@ Use `PLAN.md` for the desired end state:
 
 - product or project objective
 - scope boundaries
-- target architecture direction
+- target architecture
 - major implementation decisions that shape the final system
 - roadmap or milestone framing
 - strategic open questions
 
-Keep it stable by default. Update it when direction changes, not for routine progress.
+Keep it stable by default. Update it when the target state changes, not for routine progress.
+Differences between `PLAN.md` and the current implementation are expected; the backlog should make that gap explicit through milestone and task progression.
 
 `PLAN.md` can stay more discursive than the other artifacts as long as the section boundaries remain clear.
 
@@ -138,6 +139,7 @@ Use `BACKLOG.md` to translate the plan into milestone-based atomic work:
 - memory IDs for memory references
 
 If new work appears, add a task instead of hiding it in notes.
+Use backlog status to reflect progress from current implementation toward the target state described in `PLAN.md`.
 If a task needs extra context to be understandable, add a short rationale or point to the relevant memory record or architecture section.
 
 ## Step 5: Initialize Memory Through `$project-memory`

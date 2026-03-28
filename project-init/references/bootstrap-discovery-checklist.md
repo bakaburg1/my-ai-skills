@@ -1,6 +1,6 @@
 # Bootstrap Discovery Checklist
 
-Use this checklist before writing the canonical artifact set. Extract what the user already gave you, then ask only for the missing information that would materially improve the scaffold.
+Use this checklist before writing the canonical coordination files. Extract what the user already gave you, then ask only for the missing information that would materially improve the scaffold.
 
 ## Minimum Backbone
 
@@ -10,7 +10,7 @@ Use this checklist before writing the canonical artifact set. Extract what the u
 - intended audience or users
 - target deliverable or product shape
 - major scope boundaries
-- major technical direction or constraints
+- major technical design or constraints
 - initial milestones or phases
 - known open questions
 - what the user wants to defer

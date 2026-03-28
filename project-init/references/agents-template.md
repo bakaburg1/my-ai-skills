@@ -12,27 +12,29 @@ Here's a recommended structure, which can be adapted to the specific needs of th
 
 Here you should put a short description of the project, what it is, what it does, and what its goals are. This description should be kept stable and should not be updated frequently.
 
-## Required read order
+## Agent operative system
 
-Read these files in this order before starting substantial work:
+This repository is governed by the canonical coordination files: `AGENTS.md`, `PLAN.md`, `ARCHITECTURE.md`, `BACKLOG.md`, and `.agents/memory/`. Use them as the repo's operating system for coordination, planning, execution, and durable memory.
 
-1. `AGENTS.md`
-2. `PLAN.md`
-3. `ARCHITECTURE.md`
-4. `BACKLOG.md`
-5. `.agents/memory/MEMORY.json`
-6. Only the child memory files needed for the task
+### Canonical coordination files
 
-## Artifact roles
-
-- `PLAN.md` describes the intended end state, milestone direction, and major future contracts. Update it only when direction changes.
+- `AGENTS.md` is the repo-wide operating manual. It defines stable, horizontal working rules for agents and contributors, explains how to navigate the other coordination files, and sets the expectations for repo hygiene, workflow discipline, and communication. It's stateless and horizontal: do not use it for live task status, implementation backlog detail, or feature-specific design.
+- `PLAN.md` describes the intended end state, roadmap, and major project contracts. Update it only when the target state changes.
 - `ARCHITECTURE.md` describes implemented reality only. Update it when landed code, data layout, or tooling actually changes.
 - `BACKLOG.md` is the canonical execution tracker. Work to do is listed here and the work status should be updated as the project progresses. Items/milestones may be added or edited but only with the user permission.
 - `.agents/memory/` stores durable decisions, constraints, risks, questions, learning points, solved issues and errors, and resolutions that should survive across sessions. It must not become a diary or duplicate the plan or backlog.
 
-## Execution loop
+The gap between `PLAN.md` and `ARCHITECTURE.md` is expected. `BACKLOG.md` should make that gap actionable and show progress as it closes.
 
-1. Read the canonical files in order.
+### Execution loop
+
+1. Read the canonical coordination files in order:
+   1. `AGENTS.md`
+   2. `PLAN.md`
+   3. `ARCHITECTURE.md`
+   4. `BACKLOG.md`
+   5. `.agents/memory/MEMORY.json`
+   6. Only the child memory files needed for the task
 2. Pick the next unblocked backlog item unless the user redirects the work.
 3. Read `.agents/memory/MEMORY.json` first, then retrieve only the relevant child memory branches useful for the current task.
 4. Perform the task.
