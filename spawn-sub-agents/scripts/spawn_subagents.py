@@ -62,8 +62,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--runner",
         type=str,
-        default="codex exec",
-        help="Base command to run (default: 'codex exec').",
+        default="opencode run",
+        help="Base command to run (default: 'opencode run').",
     )
     parser.add_argument(
         "--runner-args",
@@ -145,6 +145,18 @@ def parse_args() -> argparse.Namespace:
         "--dry-run",
         action="store_true",
         help="Print commands without executing.",
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="opencode/mimo-v2-pro-free",
+        help="Model to use in opencode (default: opencode/mimo-v2-pro-free).",
+    )
+    parser.add_argument(
+        "--reasoning",
+        type=str,
+        default="high",
+        help="Reasoning level variant in opencode (e.g. high, max, minimal). Default is high.",
     )
     return parser.parse_args()
 
@@ -285,6 +297,34 @@ def main() -> int:
     except (FileNotFoundError, ValueError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
+
+    # Opencode specific validation and argument injection
+    if "opencode run" in args.runner:
+        if args.model == "opencode/mimo-v2-pro-free" or args.model == "mimo-v2-pro-free":
+            # Check availability using opencode models
+            try:
+                models_output = subprocess.check_output(
+                    ["opencode", "models"], text=True, stderr=subprocess.STDOUT
+                )
+                if "mimo-v2-pro-free" not in models_output:
+                    print(
+                        "ERROR: Free model 'mimo-v2-pro-free' is no longer available "
+                        "and no custom model was specified. Please update the spawn-sub-agents skill.",
+                        file=sys.stderr,
+                    )
+                    return 2
+            except subprocess.CalledProcessError as e:
+                pass # Ignore if opencode models command fails for some other reason
+
+        # Inject opencode-specific arguments
+        extra_args = [f"--model={args.model}", f"--variant={args.reasoning}"]
+        if Path("AGENTS.md").exists():
+            extra_args.extend(["-f", "AGENTS.md"])
+
+        if args.runner_args:
+            args.runner_args += " " + " ".join(shlex.quote(x) for x in extra_args)
+        else:
+            args.runner_args = " ".join(shlex.quote(x) for x in extra_args)
 
     # Enforce confirmation for large batches.
     if len(tasks) > 5 and not args.confirm_large:
