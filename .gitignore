@@ -1,1 +1,12 @@
-.system/skill-creator/scripts/__pycache__/generate_openai_yaml.cpython-314.pyc
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Python build artifacts
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
