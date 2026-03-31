@@ -32,8 +32,12 @@ tidyverse conventions where they materially improve clarity or safety.
   repo state.
 - When an external assistant would benefit from exact R context,
   optionally use `btw::btw(..., clipboard = FALSE)` to gather prompt-ready
-  descriptions of functions, help pages, packages, data frames, or
-  environments.
+  descriptions of functions, packages, data frames, or environments.
+- When applied to a function, `btw::btw()` gives the function body and
+  surrounding context, not the full Rd help page.
+- When you need the full Rd help text for a function, use
+  `help("<fn>", package = "<package>") |> utils:::.getHelpFile() |>
+  tools::Rd2txt()`.
 `btw::btw(dplyr::mutate, mtcars, clipboard = FALSE)`
 
 ## Workflow

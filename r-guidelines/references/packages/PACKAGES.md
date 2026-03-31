@@ -19,7 +19,11 @@ developer workflows, and user-facing errors or messages.
   docs so the current contract is explicit.
 - When an LLM needs richer context about a package function, data frame,
   or help topic, optionally gather it with `btw::btw(..., clipboard =
-  FALSE)` instead of pasting incomplete snippets from memory.
+  FALSE)` instead of pasting incomplete snippets from memory. When
+  applied to a function, `btw::btw()` returns the function body and
+  surrounding context, not the full Rd help page. For the
+  full Rd help text, use `help("<fn>", package = "<package>") |>
+  utils:::.getHelpFile() |> tools::Rd2txt()`.
 `btw::btw(my_function, utils::help("mutate", package = "dplyr"), clipboard = FALSE)`
 - When you need to inspect a package function body, use
   `devtools::load_all()` and then `print(function_name)` so the source
