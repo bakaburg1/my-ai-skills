@@ -1,4 +1,4 @@
 interface:
   display_name: "Spawn Sub Agents"
-  short_description: "Spawn Codex sub-agents for shell-only tasks"
-  default_prompt: "Use $spawn-sub-agents to run parallel noninteractive sub-agent probes."
+  short_description: "Run one-shot noninteractive sub-agents for investigation, testing, or bounded implementation"
+  default_prompt: "Use $spawn-sub-agents to delegate a one-shot noninteractive sub-agent task. If the delegated task edits files, provide a full detailed implementation plan."

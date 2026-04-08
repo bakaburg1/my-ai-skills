@@ -1,82 +1,227 @@
 ---
 name: spawn-sub-agents
-description: Spawn one-shot opencode sub-agents in noninteractive mode for shell-only experimentation, quick probes, or batchable tasks where intermediate steps would waste context. Use when parallelizing lightweight terminal checks, dry-run commands, or information gathering, and when the main agent should keep the full editing context while sub-agents return concise results.
+description: Spawn one-shot opencode sub-agents in noninteractive mode for repository exploration, targeted test execution, or bounded implementation work. Use when delegating a clearly planned task to one sub-agent or parallelizing multiple independent sub-agents while the main agent keeps the broader context.
 ---
 
 # Spawn Sub Agents
 
 ## 1. Overview
 
-1. Use this skill to dispatch one-shot, noninteractive opencode runs for terminal-only experimentation, then collect concise results back into the main agent's context.
+1. Use this skill to launch one-shot, noninteractive `opencode run` helper agents.
+2. This skill fits read-only investigation, focused test execution, and bounded repository edits.
+3. The main agent decides whether delegation is safe, writes the prompt, integrates the result, and communicates with the user.
+4. The main agent may spawn multiple sub-agents in parallel only when tasks are independent; parallel edit tasks require clearly separated writable ownership and no realistic chance of overlap.
 
-## 2. Use Cases
+## 2. When To Use It
 
-1. Run quick shell probes that would otherwise eat context (e.g., `rg` searches, listing files, quick command outputs).
-2. Parallelize independent checks (e.g., inspecting different directories or running small read-only commands).
-3. Produce compact summaries from command outputs that do not require file edits.
+1. Offload repository exploration, searches, documentation review, environment probes, or test runs that would waste main-agent context.
+2. Delegate a bounded implementation task when the main agent can provide a full detailed plan.
+3. Split independent work across multiple sub-agents when their scopes, files, commands, or tests can be kept separate.
+4. Keep orchestration, synthesis, and broad architectural judgment in the main agent.
 
-## 3. Workflow
+## 3. Main-Agent Rules
 
-1. Decide if a sub-agent is appropriate.
-   a. Use sub-agents only for terminal experimentation, never for editing files.
-   b. Keep main-agent edits centralized to avoid conflicts.
-   c. Do not ask sub-agents to spawn other sub-agents.
-2. Build a minimal context for each sub-agent.
-   a. Provide just enough paths, commands, and constraints.
-   b. Avoid pasting full conversation history unless essential.
-3. Define the task list.
-   a. Keep each task single-purpose and one-shot.
-   b. If more than 5 tasks are needed, ask the user to confirm before spawning.
-4. Run sub-agents in noninteractive mode.
-   a. Use `opencode run` which supports specifying `--model` and reasoning `--variant`.
-   b. The default wrapper script uses `--model=opencode/mimo-v2-pro-free` and `--reasoning=high`. If the free model is unavailable and no alternative is provided, the script will error out indicating this skill must be updated.
-   c. The wrapper automatically checks for and attaches the `AGENTS.md` file from the repository root on startup.
-5. Collect results and integrate.
-   a. Summarize outputs into actionable findings.
-   b. If a sub-agent fails, craft a clearer retry prompt.
-   c. If repeated failures occur, stop spawning and handle in the main agent.
+1. Delegate only one-shot tasks that can succeed without interactive clarification.
+2. If the delegated task edits files, provide a full and detailed plan. Do not delegate vague requests like "fix this" or "refactor that".
+3. If the delegated task does not edit files, choose the instruction detail level you think is appropriate.
+4. Always state the goal, working directory, relevant files or paths, constraints, expected deliverable, and whether edits are allowed.
+5. For edit tasks, include concrete implementation steps, coding conventions, architecture notes, and verification commands whenever available.
+6. Provide enough repo-specific context that the sub-agent does not need to guess intended behavior.
+7. Prefer several focused sub-agents over one overloaded prompt when tasks are independent.
+8. When using multiple sub-agents, assign each one explicit ownership boundaries such as files, directories, commands, or tests.
+9. For parallel edit tasks, specify exactly which files or paths each sub-agent may modify and which paths are off-limits.
+10. Do not ask a sub-agent to spawn other sub-agents.
+11. Avoid delegating destructive or irreversible work unless the user explicitly requested it and the prompt states the boundaries precisely.
 
-## 4. Prompt Template (One-Shot)
+## 3A. Launch Modes
 
-1. Use a concise, explicit prompt structure.
-2. **Detailed implementation specs** must be provided by the parent model. You cannot assume the sub-agent is smart and knowledgeable; it must be hand-driven to completion with exact instructions.
-3. Include the task, constraints, and required output format.
+1. Use `repo mode` by default.
+2. `repo mode` assumes the normal repository contract, including `AGENTS.md` and the relevant coordination files when the task needs them.
+3. Use `fast mode` only for small, self-contained tasks where repository coordination files are not needed to do correct work.
+4. Good `fast mode` candidates include:
+   - narrow read-only searches
+   - targeted command execution
+   - tiny mechanical edits in one clearly bounded file
+   - simple environment probes
+5. Do not use `fast mode` for:
+   - architecture-sensitive work
+   - backlog or planning decisions
+   - coordination-file updates
+   - broad refactors
+   - tasks where repo conventions materially affect correctness
+6. If there is any doubt, use `repo mode`.
+7. In `fast mode`, state explicitly that the sub-agent should not read repo coordination files unless the prompt references them directly.
 
-```text
-You are a one-shot sub-agent. Do not edit files.
-Task: <single, specific task>
-Constraints:
-1) Terminal-only experimentation.
-2) Do not create or ask other sub-agents.
-3) No file edits; if a complex script is needed, write it under .agents/tmp and delete it on success.
-4) Keep output concise and actionable.
-Return:
-1) Commands run.
-2) Key outputs (summarized).
-3) Any errors and suggested fixes.
+## 4. Sub-Agent Rules
+
+1. Treat every run as one-shot and self-contained.
+2. Follow the provided task and plan before expanding scope.
+3. If you are unsure how the code works, inspect nearby code, documentation, configuration, and tests before deciding what to do.
+4. If uncertainty remains, run relevant tests or targeted validation commands to confirm your understanding before making or finalizing changes.
+5. Keep edits bounded to the delegated scope and report any uncertainty that remains.
+6. If you are part of a parallel batch, do not edit files outside your assigned ownership boundary.
+7. Do not spawn or request other sub-agents.
+
+## 5. Running `opencode` Noninteractively
+
+1. Basic form:
+
+```bash
+opencode run "Your task prompt"
 ```
 
-## 5. Guardrails
+1. Preferred default for this skill:
 
-1. Do not edit or generate patches in sub-agents.
-2. Do not create or ask other sub-agents.
-3. Do not assume interactive follow-ups; each run is one-shot.
-4. If a script is unavoidable, place it in `.agents/tmp/` and remove it after success.
-5. Keep sub-agent prompts narrowly scoped.
+```bash
+opencode run --model github-copilot/gpt-5.4-mini --variant high "Your task prompt"
+```
 
-## 6. Failure Handling
+1. Important options:
+   - `--model <provider/model>` selects the model.
+   - `--variant <level>` selects reasoning effort such as `high`, `max`, or `minimal`.
+   - `--dir <path>` runs the task in a specific directory.
+   - `-f, --file <path>` attaches one or more files as context.
+   - `--print-logs` sends internal runner logs to stderr and should be reserved for debugging runs.
+   - `--log-level` controls internal runner verbosity when `--print-logs` is enabled.
+   - `--thinking` shows thinking blocks when supported and useful.
+   - `-c, --continue` continues the last session.
+   - `-s, --session <id>` continues a specific session.
+   - `--fork` forks a continued session before proceeding.
+   - `--agent <name>` selects a different agent profile when needed.
+2. Reliable startup pattern for long or multiline prompts:
+   - Write the full prompt to a repo-local task file and pass that file path as the sole positional message.
+   - Put that prompt file under `.agents/tmp/sub_agents/<pid>-<timestamp>/task.txt` or a similarly named repo-local run directory.
+   - Keep the prompt file inside the workspace or repo. Do not place it under `/tmp` or another external directory unless you have already confirmed the runner can read it.
+   - Prefer a blocking, single-shot launch instead of shell quoting a multiline prompt inline.
+   - If you need extra context files, list them explicitly in the prompt or attach them with `-f`; do not worry about a large context set when the task truly needs it.
+   - In this environment, the most reliable shape was: `opencode run --model github-copilot/gpt-5.4-mini --variant high <repo-local-task-file>`.
+3. Output behavior:
+   - The user-facing transcript and final response are printed to stdout.
+   - Internal runner logs are printed to stderr only when `--print-logs` is enabled.
+   - The default skill workflow should treat stdout as the primary run artifact and keep stderr separate.
+4. Prefer a repo-local task file plus `--dir` when you need repeatable noninteractive runs.
+5. For multiple parallel sub-agents, launch separate `opencode run` commands with separate prompts rather than combining unrelated tasks into one run.
+6. `AGENTS.md` is part of the repo contract and is already assumed by the workflow, so you do not need to attach it for normal launches.
+7. Always capture the user-facing transcript and any internal debug output into separate files under the run directory:
 
-1. If a sub-agent returns unusable output, retry with a clearer, more constrained prompt.
-2. If a sub-agent fails twice, stop retrying and do the work in the main agent.
+```bash
+run_id="$(date +%Y%m%dT%H%M%S)-$$"
+run_dir="$PWD/.agents/tmp/sub_agents/$run_id"
+mkdir -p "$run_dir"
+task_file="$run_dir/task.txt"
+run_log="$run_dir/run.log"
+debug_log="$run_dir/debug.log"
+opencode run --model github-copilot/gpt-5.4-mini --variant high "$task_file" \
+  > >(tee "$run_log") \
+  2> >(tee "$debug_log" >&2)
+```
 
-## 7. Scripted Orchestration
+- `run.log` is the main artifact and should contain the user-facing transcript/final answer, not internal opencode service logs.
+- `debug.log` should stay separate and is mainly for stderr, warnings, and optional debugging output.
+- If the task needs more context files, put them in the same run directory or pass them with `-f`.
+- Only add `--print-logs` for a debugging run, and when you do, also set `--log-level WARN` or `ERROR` so `debug.log` stays readable.
 
-1. Use `scripts/spawn_subagents.py` to run multiple noninteractive jobs with timeouts and concurrency control.
-2. Use `--confirm-large` only after the user approves running more than 5 tasks.
-3. Use `--output-dir` if you need per-task stdout/stderr logs.
-4. Use `--prepend` to enforce mandatory constraints (e.g., no sub-agent spawning) in every task.
-5. Output is printed by default; use `--no-print-output` to suppress it.
+1. Clean up old run directories automatically on launch when it is safe to do so.
+   - Prefer a best-effort pruning sweep for entries older than a short retention window, such as 7 days.
+   - Treat the run directory like disposable temp storage, not a permanent archive.
+2. Do not busy-poll a sub-agent run.
+   - Start the process once, let it run to completion, and wait on that single process if your environment supports it.
+   - If your tool stack cannot block while the sub-agent is running, stop after launch, report the PID and log file path, and tell the user you will resume when they wake you up.
 
-## 8. References
+## 6. Prompt Templates
 
-1. For noninteractive opencode usage patterns, see `references/noninteractive.md`.
+1. Use an explicit prompt structure.
+2. For edit tasks, the parent agent must provide detailed implementation instructions instead of relying on the sub-agent to invent the plan.
+3. Include the task, constraints, verification expectations, and required return format.
+
+```text
+You are a one-shot sub-agent.
+Task: <single, specific task>
+Working directory: <repo or subdir>
+Assigned scope: <files, directories, tests, or commands you own>
+Constraints:
+1) <state whether file edits are allowed>
+2) Do not create or ask other sub-agents.
+3) If uncertain how the code works, inspect code, docs, config, and tests first.
+4) Run relevant tests or checks when needed to validate conclusions.
+5) If this is part of a parallel batch, do not go outside your assigned scope.
+6) Keep output concise and actionable.
+Return:
+1) What you did.
+2) Files changed or commands run.
+3) What you verified.
+4) Remaining risks or open questions.
+```
+
+4. Use this template when the delegated task edits files:
+
+```text
+You are a one-shot sub-agent and you may edit files.
+Goal: <precise implementation objective>
+Working directory: <repo root or subdir>
+Relevant files: <paths>
+Owned writable files or paths: <exact paths this sub-agent may change>
+Constraints:
+1) Stay within the delegated scope.
+2) Follow this plan exactly unless verification reveals a necessary adjustment.
+3) If unsure how the current code works, inspect related code, docs, config, and tests before editing.
+4) If this is part of a parallel batch, do not edit files outside the owned writable paths.
+5) Run the required validation after changes.
+Plan:
+1) <step one>
+2) <step two>
+3) <step three>
+Validation:
+1) <test or command>
+2) <test or command>
+Return:
+1) Changes made.
+2) Validation performed and results.
+3) Any deviations from the plan and why.
+4) Remaining risks or follow-ups.
+```
+
+5. Use this template for `fast mode` tasks:
+
+```text
+You are a one-shot sub-agent in fast mode.
+Task: <single, specific task>
+Working directory: <repo or subdir>
+Assigned scope: <files, directories, tests, or commands you own>
+Constraints:
+1) Do not read AGENTS.md, PLAN.md, ARCHITECTURE.md, BACKLOG.md, or project memory unless this prompt explicitly references them.
+2) Stay within the assigned scope.
+3) Do not create or ask other sub-agents.
+4) If uncertain, inspect only the directly relevant code, docs, config, or tests needed for this task.
+5) Keep output concise and actionable.
+Return:
+1) What you did.
+2) Files changed or commands run.
+3) What you verified.
+4) Remaining risks or open questions.
+```
+
+## 7. Parallel Execution Guidance
+
+1. Run multiple sub-agents only when their tasks are independent.
+2. Parallel read-only exploration and test tasks are usually safe if they do not compete for exclusive resources.
+3. Parallel edit tasks are safe only when writable ownership is clearly split and there is no realistic chance of overlapping changes.
+4. Prefer one prompt per task instead of combining unrelated goals.
+5. Give each parallel sub-agent explicit file, directory, command, or test ownership.
+6. Capture outputs to files and keep the prompt file, log file, and any supporting context under `.agents/tmp/sub_agents/<pid>-<timestamp>/`.
+7. Prefer a single blocking launch with console-plus-file log capture over repeated polling.
+8. If the environment cannot wait on the sub-agent process directly, stop after launch and hand control back to the user rather than spinning on repeated status checks.
+9. Be conservative with large batches; if delegation becomes hard to review, do more of the work in the main agent.
+
+## 8. Guardrails And Failure Handling
+
+1. Do not create or ask other sub-agents.
+2. Do not assume interactive follow-ups; each run is one-shot.
+3. Keep prompts narrowly scoped and explicit.
+4. Do not let a sub-agent silently broaden the task beyond the delegated goal.
+5. Do not assign overlapping writable ownership to multiple sub-agents.
+6. Prefer the main agent to handle final synthesis, broad architectural judgment, and user communication.
+7. If a sub-agent returns unusable output, retry with a clearer, more constrained prompt.
+8. If a sub-agent fails twice, stop retrying and do the work in the main agent.
+9. If a delegated edit task starts to require major replanning, take the work back into the main agent and produce a new plan before delegating again.
+10. If parallel sub-agents uncover shared writable files, conflicting assumptions, or competing ownership, stop the parallel plan and re-scope the work in the main agent.
