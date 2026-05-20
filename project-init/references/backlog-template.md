@@ -12,6 +12,7 @@ Define status markers such as:
 - `[-]` in progress
 - `[x]` done
 - `[!]` blocked
+- `[a]` aborted/deprecated
 
 ### 2. Current Next Unblocked Task
 
@@ -35,6 +36,8 @@ Each task should have:
 If a task is not self-explanatory, add a short rationale or point to the relevant memory record or architecture section.
 
 When a task has no prerequisite, say so only when that improves clarity.
+
+Use `[a]` for items that were intentionally removed temporarily or definitively but should remain visible for traceability. Include a compact reason when marking an item aborted/deprecated.
 
 ### 5. Decision Gates
 

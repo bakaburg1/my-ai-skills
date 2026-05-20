@@ -55,6 +55,7 @@ Use this skill to draft and apply commits for the current git repository while m
         - `<scope>`: The specific part of the codebase affected (e.g., `ui`, `core`, `api`, or a subject name like `commit` for this skill, or a function name/group). Mirror existing scope patterns found in history.
         - `<backlog id>`: Only include if a backlog (e.g. BACKLOG.md or similar) exists and an ID is identifiable (e.g., `AC-123` or `P1-01`).
         - `Why: rationale`: A brief explanation of the "why" behind the changes at the bottom of the body.
+        - Commit messages must describe only the content being committed. Do not mention unrelated or still-uncommitted changes, artifacts, or files that are intentionally excluded from the commit.
 9. **Confirm and Apply**:
     - Present the drafted message and the list/description within the proposal for review.
     - Explicitly ask for confirmation before applying.
@@ -64,5 +65,6 @@ Use this skill to draft and apply commits for the current git repository while m
 ## Rules
 
 - Do not list all future commits at once; focus on the current one and proceed only after it is committed.
+- Do not mention uncommitted changes in the proposed or final commit message. If something is intentionally excluded, handle that in the conversational explanation, not in the commit text.
 - If a commit fails, report the error and stop.
 - If you cannot generate or apply a commit, explain why.

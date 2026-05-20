@@ -46,6 +46,7 @@ The gap between `PLAN.md` and `ARCHITECTURE.md` is expected. `BACKLOG.md` should
 ## Backlog discipline
 
 - Use stable task IDs.
+- Use the default status markers: `[ ]` pending, `[-]` in progress, `[x]` done, `[!]` blocked, and `[a]` aborted/deprecated.
 - Keep tasks atomic and finishable in one focused implementation effort.
 - Record explicit dependencies when they matter for sequencing or parallel work.
 - Keep decision gates visible as explicit backlog items.

@@ -138,6 +138,14 @@ Use `BACKLOG.md` to translate the plan into milestone-based atomic work:
 - references to architecture section numbers where useful
 - memory IDs for memory references
 
+Backlog legends should include these default status markers:
+
+- `[ ]` pending
+- `[-]` in progress
+- `[x]` done
+- `[!]` blocked
+- `[a]` aborted/deprecated, for items intentionally removed temporarily or definitively while preserving their trace in the backlog
+
 If new work appears, add a task instead of hiding it in notes.
 Use backlog status to reflect progress from current implementation toward the target state described in `PLAN.md`.
 If a task needs extra context to be understandable, add a short rationale or point to the relevant memory record or architecture section.
