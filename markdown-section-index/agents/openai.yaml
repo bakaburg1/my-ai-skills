@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markdown Section Index"
+  short_description: "Index and extract Markdown sections"
+  default_prompt: "Use $markdown-section-index to index this long Markdown or Quarto file and extract the sections I need."
