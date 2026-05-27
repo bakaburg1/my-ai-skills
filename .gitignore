@@ -1,3 +1,6 @@
+# Codex-internal system skills (synced from Codex, not versioned here)
+.system/
+
 # macOS system files
 .DS_Store
 **/.DS_Store
