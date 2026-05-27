@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sidecar Agent"
+  short_description: "Drive work through sidecar agents"
+  default_prompt: "Use $sidecar-agent to assess the request, delegate suitable execution to gpt-5.4-mini medium sidecars, evaluate their work, and report validated results."
