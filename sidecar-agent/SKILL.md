@@ -1,6 +1,9 @@
 ---
 name: sidecar-agent
-description: "Orchestrate work through sidecar subagents while the main agent stays the driver: inspect ~/.codex/config.toml for sidecar concurrency, decide what is worth delegating, run simple local commands or edits directly when cheaper, spawn gpt-5.4-mini medium sidecars by default, adjust reasoning level when needed, evaluate their work, and report only validated outcomes. Use when the user wants the main agent to coordinate execution through subagents rather than perform all work inline."
+description: Coordinates work through sidecar subagents while the main agent stays driver. Use only when the user explicitly requests sidecars—not for general subagent or delegation workflows.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # Sidecar Agent

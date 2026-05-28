@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 Angelo D'Ambrosio
 """Inspect and mark tracked changes/comments in DOCX review files.
 
 This intentionally reads the DOCX package directly instead of using Word,

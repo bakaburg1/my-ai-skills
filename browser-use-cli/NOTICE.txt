@@ -1,0 +1,10 @@
+browser-use-cli — upstream attribution
+
+This skill is derived from the browser-use project skill documentation:
+  https://github.com/browser-use/browser-use
+  Skill docs: skill_cli/README.md in that repository
+
+This copy is not authored or maintained by Angelo D'Ambrosio. It is vendored
+for local agent use.
+
+Refer to the browser-use repository for current upstream terms and updates.

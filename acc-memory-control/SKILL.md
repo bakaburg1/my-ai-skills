@@ -1,9 +1,20 @@
 ---
 name: acc-memory-control
-description: Prevent drift in long multi-step work by tracking decisions/constraints in a compact state (CCS) and logging evidence separately; use when the user says "use acc", "don't lose context", "track decisions", "keep constraints", "project memory", when a commit is requested (evaluate milestone and update ACC if needed), or during iterative planning/refactor/debug/investigation. Default to READ MODE at session start or topic change.
+description: Tracks decisions and constraints in a compact ACC/CCS state with separate evidence logs. Use when the user says "use acc", asks to preserve context, or at milestone commits.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # ACC Memory Control (Threaded CCS + Router)
+
+## Inspiration
+
+This skill adapts ideas from Fouad Bousetouane, *AI Agents Need Memory Control Over More Context*,
+arXiv:2601.11653 (2026). https://arxiv.org/abs/2601.11653
+
+The threaded router CCS extension and operational READ/WRITE procedures in this repository are
+original contributions by Angelo D'Ambrosio (EUPL-1.2).
 
 ## Purpose
 Implement an Agent Cognitive Compressor (ACC) style workflow: keep a **bounded control state** (the Compressed Cognitive State, CCS) and keep **evidence/history** in separate logs/artifacts. The goal is to reduce drift across long work: forgotten constraints, inconsistent decisions, and "latest-diff tunnel vision".

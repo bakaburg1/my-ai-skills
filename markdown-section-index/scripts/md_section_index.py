@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 Angelo D'Ambrosio
 """Index and extract sections from Markdown-like files."""
 
 from __future__ import annotations

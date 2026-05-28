@@ -1,6 +1,9 @@
 ---
 name: project-init
-description: Bootstrap a new project around a coordinated operating system of `AGENTS.md`, `PLAN.md`, `ARCHITECTURE.md`, `BACKLOG.md`, and `.agents/memory/`. Use when Codex needs to initialize or re-initialize a repository's working contract, artifact choreography, backlog discipline, and project memory flow for a new product, tool, app, library, or internal project.
+description: Bootstraps a new project with AGENTS.md, PLAN.md, ARCHITECTURE.md, BACKLOG.md, and project memory. Use when initializing a repository working contract.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # Project Init

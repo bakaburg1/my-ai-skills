@@ -126,14 +126,14 @@ Use the **most specific** expectation available:
 * Use `testthat::local_mocked_bindings()` for mocks (supersedes the `mockery` package).
 
   ```r
-  withr::with_options(list(minutemaker_correction_llm_model = "mock_model"), {
+  withr::with_options(list(example_package_llm_model = "mock_model"), {
     testthat::local_mocked_bindings(
       set_llmr_model = function(...) invisible(NULL),
-      .package = "llmR"
+      .package = "examplePackage"
     )
 
     expect_error(
-      correct_transcription_errors("text", include_reasoning = "true_string"),
+      validate_logical_flag("true_string"),
       "must be a single logical value"
     )
   })

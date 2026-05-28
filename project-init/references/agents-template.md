@@ -73,7 +73,7 @@ Practical rules:
 ## Git rules
 
 - Treat `main` as the baseline branch unless the user asks for a different workflow.
-[Some users may prefer to use a main-dev-branch workflow instead. Ask the user.]
+- Note: Some users may prefer a main-dev-branch workflow instead. Ask the user.
 - Use conventional-style commit messages. Always add the task ID as a prefix to the commit message. Always add a commit body in list form ending with a Why: element explaining the changes rationale briefly. e.g.:
 
 ```

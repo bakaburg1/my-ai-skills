@@ -1,6 +1,9 @@
 ---
 name: r-test
-description: Guidelines for writing and running R unit tests. Use when adding or updating tests, selecting test patterns, or deciding how to run R test suites.
+description: Guidelines for writing and running R unit tests. Use when adding or updating tests, choosing patterns, or running test suites.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # R Unit Testing

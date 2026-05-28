@@ -1,6 +1,9 @@
 ---
 name: r-guidelines
-description: Guidelines for writing and reviewing R code. Use when generating or editing R code, choosing R style conventions, or inspecting task-specific references for validation, filesystem handling, `targets` pipelines, data wrangling and manipulation (`dplyr`, `tidyr`, `tibble`, legacy `plyr`), functional programming and iteration (`purrr`), string manipulation (`stringr`), plotting (`ggplot2`), tidy evaluation, vctrs, S7, package tooling, and performance choices.
+description: R coding and review guidelines with task-specific references. Use when writing, editing, or reviewing R code, packages, dplyr/tidyr/ggplot2, targets, or tests.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # R Guidelines

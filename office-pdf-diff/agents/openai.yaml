@@ -1,4 +1,0 @@
-interface:
-  display_name: "Office/PDF Diff"
-  short_description: "Inspect Office/PDF diffs fast"
-  default_prompt: "Use $office-pdf-diff to inspect how this Office or PDF file changed versus the committed version."

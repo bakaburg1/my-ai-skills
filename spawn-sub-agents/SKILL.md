@@ -1,6 +1,9 @@
 ---
 name: spawn-sub-agents
-description: Spawn one-shot opencode sub-agents in noninteractive mode for repository exploration, targeted test execution, or bounded implementation work. Use when delegating a clearly planned task to one sub-agent or parallelizing multiple independent sub-agents while the main agent keeps the broader context.
+description: Spawns one-shot opencode sub-agents for exploration, tests, or bounded implementation. Use when delegating a planned task or parallelizing independent sub-agents.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # Spawn Sub Agents

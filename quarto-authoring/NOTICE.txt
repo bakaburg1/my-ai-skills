@@ -1,0 +1,9 @@
+quarto-authoring — upstream attribution
+
+This skill is by Mickaël Canouil (@mcanouil).
+License: MIT (see SKILL.md frontmatter and reference content in this directory)
+
+This copy is not authored or maintained by Angelo D'Ambrosio. It is vendored
+for local agent use with upstream MIT terms preserved.
+
+Refer to the original quarto-authoring skill source for updates.

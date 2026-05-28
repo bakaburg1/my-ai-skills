@@ -1,6 +1,9 @@
 ---
 name: pptx-slide-export
-description: Export PowerPoint files (.ppt/.pptx) to medium-resolution slide images using soffice + pdftoppm for visual QA. Use when asked to render slides as figures, generate lightweight previews, or inspect layout/text issues when PowerPoint-native image export is not available.
+description: Exports PowerPoint slides to medium-resolution images via soffice and pdftoppm. Use when rendering slide previews or inspecting layout without native image export.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # Pptx Slide Export

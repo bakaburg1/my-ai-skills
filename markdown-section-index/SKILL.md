@@ -1,6 +1,9 @@
 ---
 name: markdown-section-index
-description: Index and extract sections from Markdown-like documents, including .md, .qmd, .rmd, and other files that use # heading structure. Use when Codex needs to navigate a long Markdown/Quarto/R Markdown file, list its section hierarchy, locate headings, or retrieve one or more sections by exact or fuzzy heading title.
+description: Indexes and extracts sections from Markdown-like documents (.md, .qmd, .rmd). Use when navigating long docs or retrieving sections by heading.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # Markdown Section Index

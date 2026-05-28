@@ -1,0 +1,12 @@
+code-review — upstream attribution
+
+This skill is derived from CodeRabbit's official skills repository:
+  https://github.com/coderabbitai/skills
+  Path: skills/code-review/SKILL.md
+
+This copy is not authored or maintained by Angelo D'Ambrosio. It is vendored
+for local use and may differ from upstream (e.g. this variant references
+--prompt-only/--plain flags; upstream may use --agent + --dir).
+
+Refer to the CodeRabbit repository for current upstream terms and updates.
+Install alternative: npx skills add coderabbitai/skills

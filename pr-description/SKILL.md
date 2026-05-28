@@ -1,6 +1,9 @@
 ---
 name: pr-description
-description: Guidance for writing git pull request descriptions. Use when the user asks to draft, edit, or format PR descriptions.
+description: Guides writing git pull request descriptions. Use when the user asks to draft, edit, or format PR descriptions.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # PR Description

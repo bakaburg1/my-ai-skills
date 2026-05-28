@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Copyright (c) 2026 Angelo D'Ambrosio
 set -euo pipefail
 
 if [[ $# -lt 2 || $# -gt 4 ]]; then

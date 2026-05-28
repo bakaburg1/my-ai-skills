@@ -1,3 +1,4 @@
+# Copyright (c) 2026 Angelo D'Ambrosio
 list_r_functions <- function(file_regex = "R/utils.*\\.R$") {
   # Validate file_regex input.
   if (!is.character(file_regex) || length(file_regex) < 1) {

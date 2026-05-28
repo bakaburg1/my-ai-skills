@@ -1,0 +1,11 @@
+firecrawl — upstream attribution
+
+This skill documents the official Firecrawl CLI:
+  https://github.com/firecrawl/cli
+  npm: https://www.npmjs.com/package/firecrawl-cli
+  Docs: https://docs.firecrawl.dev/sdks/cli
+
+This copy is not authored or maintained by Angelo D'Ambrosio. It is adapted
+for local agent use. See firecrawl/rules/install.md for installation steps.
+
+Refer to the Firecrawl CLI repository for current upstream terms and updates.

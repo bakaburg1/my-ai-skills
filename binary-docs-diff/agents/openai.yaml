@@ -1,0 +1,4 @@
+interface:
+  display_name: "Binary Docs Diff"
+  short_description: "Inspect binary document diffs"
+  default_prompt: "Use $binary-docs-diff to inspect how this Office or PDF file changed versus the committed version."

@@ -1,6 +1,9 @@
 ---
 name: commit
-description: Guide for drafting and applying git commits in a repository. Use when the user asks to write or apply commits, stage changes, or organize commits by mode (E/I/G) for current changes.
+description: Guides drafting and applying git commits, including staging and E/I/G commit grouping. Use when the user asks to write, stage, or organize commits.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # Commit

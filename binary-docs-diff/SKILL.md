@@ -1,9 +1,12 @@
 ---
-name: office-pdf-diff
-description: Inspect diffs for binary business documents by comparing `.docx`, `.xlsx`, `.pptx`, and `.pdf` files against a committed or alternate version. Use when normal `git diff` is not useful for Office/PDF files, especially during review. First extract Markdown with `markitdown` to catch user-visible text changes; if text is unchanged or ambiguous, inspect OOXML/PDF internals, metadata, and rendered page-image diffs to catch style, layout, media, or image-only changes.
+name: binary-docs-diff
+description: Inspects diffs for binary documents (`.docx`, `.xlsx`, `.pptx`, `.pdf`) when normal `git diff` is not useful, especially during review.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
-# Office/PDF Diff
+# Binary Docs Diff
 
 ## Overview
 Use this skill to inspect binary document diffs without unpacking Office files or reconstructing PDF evidence by hand.

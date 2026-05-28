@@ -1,6 +1,9 @@
 ---
 name: apply-clearance-comments
-description: Review Word DOCX clearance comments/tracked changes against source text, propose approved edits, and mark decisions in the chosen Word review target.
+description: Reviews Word DOCX clearance comments and tracked changes against source text and marks decisions in the review target. Use when editing clearance or peer-review DOCX files.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # Apply Clearance Comments

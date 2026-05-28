@@ -1,6 +1,9 @@
 ---
 name: list-r-functions
-description: List R function names/signatures and collect corresponding .Rd text from man/ for functions defined in selected R source files (e.g., R/utils*.R). Use when you need a quick catalog of functions in R files and their documentation.
+description: Lists R function names and signatures with matching .Rd text from man/. Use when cataloging functions defined in selected R source files.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # List R Functions

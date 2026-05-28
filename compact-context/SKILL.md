@@ -1,6 +1,9 @@
 ---
 name: compact-context
-description: Create comprehensive, long-form conversation summaries and handoff memos that cover the entire thread. Use when the user asks to summarize a conversation, requests a handoff/memento for the next agent, mentions token limits, or needs a durable record of decisions, constraints, TODOs, files, tests, and open issues.
+description: Creates long-form conversation summaries and handoff memos for the full thread. Use when summarizing a chat, handing off to another agent, or hitting token limits.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # Compact Context

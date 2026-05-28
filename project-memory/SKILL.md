@@ -1,6 +1,9 @@
 ---
 name: project-memory
-description: Use when managing `.agents/memory/` for any project, including initialization, selective retrieval, durable context tracking, and memory updates.
+description: Manages `.agents/memory/` for durable project context, including initialization and selective retrieval. Use when reading or updating project memory.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # Project Memory

@@ -1,6 +1,20 @@
 # Codex-internal system skills (synced from Codex, not versioned here)
 .system/
 
+# Codex-managed or upstream-distributed skills (install via Codex / openai/skills)
+playwright/
+playwright-interactive/
+
+# Cursor skill repo upstream (install via Cursor, not vendored here)
+thermo-nuclear-code-quality-review/
+
+# Generated clearance blind-test outputs (source fixtures stay tracked)
+apply-clearance-comments/test-fixtures/**/*.reviewed.docx
+
+# docx-assistant build artifacts (source is tracked)
+docx-assistant/tools/docxctl/bin/
+docx-assistant/tools/docxctl/obj/
+
 # macOS system files
 .DS_Store
 **/.DS_Store

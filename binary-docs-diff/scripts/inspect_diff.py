@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 Angelo D'Ambrosio
 from __future__ import annotations
 
 import argparse
@@ -548,7 +549,7 @@ def main() -> int:
     artifacts_dir = (
         Path(args.output_dir).expanduser().resolve()
         if args.output_dir
-        else Path(tempfile.mkdtemp(prefix="office-pdf-diff-"))
+        else Path(tempfile.mkdtemp(prefix="binary-docs-diff-"))
     )
     artifacts_dir.mkdir(parents=True, exist_ok=True)
 

@@ -1,6 +1,9 @@
 ---
 name: verify-review
-description: Guidance for assessing and applying code review recommendations. Use when the user requests a review, verification of changes, or to evaluate suggested edits.
+description: Guides assessing and applying code review recommendations. Use when verifying changes or evaluating suggested review edits.
+metadata:
+  author: Angelo D'Ambrosio
+  license: EUPL-1.2
 ---
 
 # Verify Review
