@@ -38,6 +38,9 @@ Read this file when editing package metadata, roxygen docs, imports, or
 `#' @param cols <[`tidy-select`][dplyr::dplyr_tidy_select]> Columns to keep.`
 - Use `devtools::document()` to refresh docs and `NAMESPACE`.
 `Rscript -e 'devtools::document()'`
+- Before whole-package validation, run `devtools::document()` first, then
+  use `devtools::check()` as the full package inspection.
+`Rscript -e 'devtools::check()'`
 - Avoid `@importFrom` when functions are already namespaced in code.
 - For repeatedly used packages inside a function, `@importFrom` can be
   appropriate, but do not duplicate imports when you already call
@@ -55,6 +58,11 @@ Read this file when editing package metadata, roxygen docs, imports, or
   expansion issues.
 `Rscript -e 'source(\"scripts/check.R\")'`
 - Allow long timeouts for `devtools::check()` from the shell.
+- Do not run a separate full `devtools::test()` before `devtools::check()`;
+  `devtools::check()` already runs the package tests.
+- If `devtools::check()` finds errors, iterate with scoped
+  `devtools::test(filter = "...")` runs for speed until the regression is
+  fixed, then rerun `devtools::document()` and `devtools::check()`.
 - When full R help text is required, use
   `utils:::.getHelpFile(help("fn", package = "pkg"))`.
 `utils:::.getHelpFile(help("mutate", package = "dplyr"))`

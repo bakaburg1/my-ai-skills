@@ -47,8 +47,13 @@ test coverage.
 - For tidy-eval interfaces, test both simple column inputs and injected or
   expression-based inputs.
 - For package workflows, cover integration paths as well as unit behavior.
+- For whole-package inspections, prefer `devtools::check()` over a full
+  `devtools::test()` run, and run `devtools::document()` before checking.
 - For targeted test runs, prefer `Rscript -e 'devtools::test(filter = "...")'`
   rather than `testthat::test_file()`.
 `Rscript -e 'devtools::test(filter = "validate_path")'`
+- Use targeted `devtools::test(filter = "...")` runs only for scoped
+  iteration after an issue is found; once fixed, rerun
+  `devtools::document()` and `devtools::check()`.
 - Use `devtools::load_all()` for small console repros, not as the default
   way to run the test suite.
