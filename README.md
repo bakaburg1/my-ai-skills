@@ -24,7 +24,3 @@ Examples: `firecrawl`, `browser-use-cli`, `quarto-authoring`, `code-review`, `th
 
 - **EUPL-1.2** applies only to original skills (see root [`LICENSE`](LICENSE) and each skill's `LICENSE.txt`).
 - **Upstream skills**: read that skill's `NOTICE.txt` and any license declared in its `SKILL.md`.
-
-## History rewrite note
-
-If you clone an older revision or add a remote later, be aware this repository may have been cleaned with `git filter-repo` to remove machine-local paths and generated test artifacts. After such a rewrite, use `git push --force-with-lease` when publishing to an existing remote.
