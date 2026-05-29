@@ -1,6 +1,3 @@
-<skill>
-<name>docx-assistant</name>
-<path>/Users/angelodambrosio/Documents/agent-skills/docx-assistant/SKILL.md</path>
 ---
 name: docx-assistant
 description: Skill for cross-platform .docx reader/editor. Summarize and navigate large documents, detect/retain tracked changes, generate new tracked changes, read/add/reply to comments (threaded when possible). Use when asked to edit or read Word documents.
