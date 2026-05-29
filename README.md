@@ -18,7 +18,7 @@ Examples: `r-guidelines`, `acc-memory-control`, `commit`, `docx-assistant`, `bin
 
 Vendored or adapted from upstream projects. Each has a `NOTICE.txt` with upstream terms. These skills are **not** licensed under the EUPL.
 
-Examples: `firecrawl`, `browser-use-cli`, `quarto-authoring`, `code-review`.
+Examples: `firecrawl`, `browser-use-cli`, `quarto-authoring`, `code-review`, `thermo-nuclear-code-quality-review`.
 
 ## Attribution and licenses
 

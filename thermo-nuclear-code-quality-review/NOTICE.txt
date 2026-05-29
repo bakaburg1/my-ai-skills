@@ -1,0 +1,10 @@
+thermo-nuclear-code-quality-review — upstream attribution
+
+This skill is from Cursor's official plugins repository:
+  https://github.com/cursor/plugins
+  Path: cursor-team-kit/skills/thermo-nuclear-code-quality-review/SKILL.md
+
+This copy is not authored or maintained by Angelo D'Ambrosio. It is vendored
+for local use across symlinked agent harnesses.
+
+Refer to the cursor/plugins repository for current upstream terms and updates.

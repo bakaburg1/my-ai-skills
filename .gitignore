@@ -5,9 +5,6 @@
 playwright/
 playwright-interactive/
 
-# Cursor skill repo upstream (install via Cursor, not vendored here)
-thermo-nuclear-code-quality-review/
-
 # Generated clearance blind-test outputs (source fixtures stay tracked)
 apply-clearance-comments/test-fixtures/**/*.reviewed.docx
 
